@@ -30,7 +30,7 @@ tipo:
     ;
 
 atribuicao:
-    ID ATRIB expressao DELIM { printf("\Atribuição válida sintaticamente\n"); }
+    ID ATRIB expressao DELIM { printf("\n Atribuição válida sintaticamente\n"); }
     ;
 
 expressao:
