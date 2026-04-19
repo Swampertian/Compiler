@@ -1,28 +1,21 @@
-%{ 
-#include <stdio.h>
+%{
+#include "parser.tab.h"
 %}
 
 %%
-[struct]* { printf("<key,%s>",yytext); } 
-[int]* { printf("<key,%s>",yytext); }
-[float]* { printf("<key,%s>",yytext); }
-[char]* { printf("<key,%s>",yytext); }
-[void]* { printf("<key,%s>",yytext); }
-[typeof]* { printf("<key,%s>",yytext); }
-[if]* { printf("<key,%s>",yytext); }
-[else]* { printf("<key,%s>",yytext); }
-[while]* { printf("<key,%s>",yytext); }
-[0-9]+ { printf("<id,%s>",yytext); }
-[a-zA-Z]+ { printf("<id,%s>",yytext); }
-";" { printf("<del>"); }
-"+" { printf("<op,+>"); }
-"-" { printf("<op,-"); } 
-"*" { printf("<op,*>"); }
-"/" { printf("<op,/>"); }
-"(" { printf("<ex>"); }
-")" { printf("<ex>"); }
+
+
+[int]*                  { return KEY; }
+
+[0-9]+                  { return NUMERO; }
+[a-zA-Z_][a-zA-Z0-9_]*  { return ID; }
+"+"                     { return SOMA; }
+"-"                     { return MENOS; }
+[ \t\r\n]+              { /* Ignore whitespace. */ }
+.                       { return yytext[0]; }
+
 %%
 
-
-int yywrap() { return 1; }
-
+int yywrap(void) {
+    return 1;
+}
