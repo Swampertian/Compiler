@@ -1,15 +1,17 @@
 %{
 #include "parser.tab.h"
+#include <string.h>
 %}
 
 %%
 
 
-[int]*                  { return KEY; }
-[float]*                { return KEY; }
+"int"                   { yylval.str = strdup(yytext); return KEY; }
+"float"                 { yylval.str = strdup(yytext); return KEY; }
 
-[0-9]+                  { return NUMERO; }
-[a-zA-Z_][a-zA-Z0-9_]*  { return ID; }
+[0-9]+"."[0-9]+         { yylval.str = strdup(yytext); return NUMERO; }
+[0-9]+                  { yylval.str = strdup(yytext); return NUMERO; }
+[a-zA-Z_][a-zA-Z0-9_]*  { yylval.str = strdup(yytext); return ID; }
 "+"                     { return SOMA; }
 "-"                     { return MENOS; }
 "="                     { return ATRIB; }
