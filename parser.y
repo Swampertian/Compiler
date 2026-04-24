@@ -6,16 +6,16 @@ void yyerror(const char *s);
 %}
 
 %token FIM 0 "fim da entrada"
-%token ID NUMERO SOMA MENOS KEY 
+%token ID NUMERO SOMA MENOS KEY DELIMITADOR ATRIB
 
 %%
 
 programa:
-    expressao FIM { printf("Expressao valida sintaticamente\n"); }
+    expressao_algebrica FIM { printf("Expressao valida sintaticamente\n"); }
     ;
 
-expressao:
-    chave termo sinal termo
+expressao_algebrica:
+    chave termo atrib termo sinal termo delimitador
     ;
 
 sinal:
@@ -31,6 +31,15 @@ termo:
 chave:
     KEY
     ;
+
+delimitador:
+    DELIMITADOR
+    ;
+
+atrib:
+    ATRIB
+    ;
+
 %%
 
 void yyerror(const char *s) {
