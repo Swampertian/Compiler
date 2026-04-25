@@ -1,16 +1,29 @@
 # Compiler
 
+Projeto de analisador léxico, sintático e semântico para declarações simples.
+
 #### Requisitos Minimos:
-  - Gcc
-  - Lex
+- `gcc`
+- `flex`
+- `bison`
 
-#### Compilaçao manual:
-    `cd Compiler`
-    flex contador.l`
-    `gcc lex`
-    `gcc lex.yy.c -o contador`
+#### Compilacao:
+```bash
+./run_parser.sh
+```
 
-    `echo "if(a+b)" | ./contador`
+#### Execucao:
+```bash
+./run_parser.sh "int a = 1 + 2;"
+./run_parser.sh examples/input.txt
+echo "float b = 1 - 2.5;" | ./run_parser.sh
+```
+
+Na execucao valida, o parser imprime:
+- a confirmacao sintatica e semantica;
+- a AST gerada;
+- a tabela de simbolos.
+
 #### **Autores**:
 
 [Joao vitor](https://github.com/joaovitro99)
