@@ -3,7 +3,7 @@ set -euo pipefail
 
 bison -d parser.y
 flex contador.l
-gcc -o parser parser.tab.c lex.yy.c -lfl
+gcc -o parser parser.tab.c lex.yy.c ast.c semantic.c compiler.c -lfl
 
 if [[ $# -gt 0 ]]; then
     if [[ -f "$1" ]]; then
