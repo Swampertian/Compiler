@@ -85,11 +85,11 @@ static void ast_print_node(const ASTNode *node, int depth) {
             ast_print_node(node->left, depth + 1);
             break;
         case AST_DECLARACAO:
-            printf("Declaracao %s : %s\n", node->texto, tipo_para_string(node->tipo));
+            printf("Chave %s : %s\n", node->texto, tipo_para_string(node->tipo));
             ast_print_node(node->left, depth + 1);
             break;
         case AST_BINARIO:
-            printf("Binario '%c'\n", node->operador);
+            printf("Operador: '%c'\n", node->operador);
             ast_print_node(node->left, depth + 1);
             ast_print_node(node->right, depth + 1);
             break;
@@ -97,7 +97,7 @@ static void ast_print_node(const ASTNode *node, int depth) {
             printf("Identificador %s\n", node->texto);
             break;
         case AST_NUMERO:
-            printf("Numero %s : %s\n", node->texto, tipo_para_string(node->tipo));
+            printf("Valor: %s : %s\n", node->texto, tipo_para_string(node->tipo));
             break;
     }
 
